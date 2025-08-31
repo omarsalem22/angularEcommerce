@@ -1,18 +1,32 @@
+
 <div class="row row-cols-1 row-cols-md-4 g-4">
-  <div *ngFor="let product of products" class="col">
+  @for (product of filteredProducts; track product.id) {
+
+
+  <div class="col" appCartHighlight>
     <div class="card">
-      <img
-        class="card-img-top"
-        [src]="product.imgUrl"
-        alt="{{ product.name }}"
-      />
+
+      <img class="card-img-top" [src]="product.imgUrl" alt="{{ product.name }}" />
       <div class="card-body">
-        <h5 class="card-title">{{ product.name }}</h5>
-        <p class="card-text">Price: {{ product.price }}</p>
-        <p>Quantity: {{ product.quantity }}</p>
-        <a href="#" class="btn btn-primary">Go somewhere</a>
+        <h5 class="card-title">{{ product.name | titlecase }}</h5>
+        <p class="card-text">Price: {{ product.price |currency :'EUR' }}</p>
+        @switch ( product.quantity ) {
+        @case (1) {<p>Last Element</p>}
+        @case (2) {<p>Last two Elements</p>}
+        @default {<p>Quantity : {{product.quantity}}</p>}
+        }
+
+
+
+
+        <button class="btn btn-success" (click)="buy(product,product.price)">Buy</button>
       </div>
     </div>
   </div>
+
+
+
+
+  }
+  @empty {<h1>No products found</h1>}
 </div>
-<img src="assets/images.jpeg" alt="ssssssssssssssssss" >

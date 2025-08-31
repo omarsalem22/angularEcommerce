@@ -1,0 +1,14 @@
+<div class="mb-3">
+    <label for="" class="form-label">category</label>
+    <select class="form-select form-select-lg" [(ngModel)]="selectedCatId">
+        <option selected value="0">All</option>
+        <option *ngFor="let category of categories" [value]="category.id">{{category.name}}</option>
+        \
+    </select>
+</div> 
+<div>
+
+    <app-products [recievedCatId]="selectedCatId" (onbuy)="addproduct($event)"></app-products>
+</div>
+
+<h1 *ngFor="let product of recievedproducts"> {{product.name}} </h1>
