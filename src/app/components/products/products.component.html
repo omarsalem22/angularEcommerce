@@ -1,4 +1,3 @@
-
 <div class="row row-cols-1 row-cols-md-4 g-4">
   @for (product of filteredProducts; track product.id) {
 
@@ -11,15 +10,24 @@
         <h5 class="card-title">{{ product.name | titlecase }}</h5>
         <p class="card-text">Price: {{ product.price |currency :'EUR' }}</p>
         @switch ( product.quantity ) {
+        @case (0) {<p></p>}
         @case (1) {<p>Last Element</p>}
         @case (2) {<p>Last two Elements</p>}
         @default {<p>Quantity : {{product.quantity}}</p>}
         }
 
+        <!-- @if(product.quantity == 0)
+        {
+        <button class="btn btn-danger">Out of stock</button>
+
+        }
+        @else {
+        <button class="btn btn-success" (click)="buy(product,product.price)"> Buy </button>
+
+        } -->
+        <button class="btn btn-info" (click)="navigateToDetails(product.id)" >Details</button>
 
 
-
-        <button class="btn btn-success" (click)="buy(product,product.price)">Buy</button>
       </div>
     </div>
   </div>
