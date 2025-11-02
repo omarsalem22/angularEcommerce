@@ -28,7 +28,6 @@ import {  Router, RouterLink } from '@angular/router';
     CurrencyPipe,
     TitleCasePipe,
     CartHighlightDirective,
-    RouterLink, 
   ],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
@@ -40,15 +39,15 @@ export class ProductsComponent implements OnChanges {
 
   totalOrderPrice: number = 0;
 
-  constructor(private __StaticProductsService: StaticProductsService ,private router :Router) {
-    this.products = this.__StaticProductsService.getAllProducts();
+  constructor(private _StaticProductsService: StaticProductsService ,private router :Router) {
+    this.products = this._StaticProductsService.getAllProducts();
     
 
     this.filteredProducts = this.products;
     this.onbuy = new EventEmitter<Iproduct>();
   }
   ngOnChanges() {
-    const filtered = this.__StaticProductsService.getProductsByCatId(
+    const filtered = this._StaticProductsService.getProductsByCatId(
       this.recievedCatId
     );
     this.filteredProducts = filtered ?? [];
