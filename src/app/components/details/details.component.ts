@@ -1,7 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, Route, Router } from '@angular/router';
 import { StaticProductsService } from '../../services/static-products.service';
 import { Iproduct } from '../../models/iproduct';
+import { Location } from '@angular/common';
 
 @Component({
   selector: 'app-details',
@@ -11,14 +12,44 @@ import { Iproduct } from '../../models/iproduct';
 })
 export class DetailsComponent implements OnInit {
   currentId: number = 0;
-  product: Iproduct |null = null;
+  product: Iproduct | null = null;
+  idsArr: number[];
+  currendIdIndex:number=0
 
   constructor(
     private _activatedRoute: ActivatedRoute,
-    private __StaticProductsService: StaticProductsService
-  ) {}
+    private __StaticProductsService: StaticProductsService,
+    private _locaton: Location,
+    private router: Router
+  ) {
+    this.idsArr = this.__StaticProductsService.mapProductsToIds();
+    // this.currendIdIndex=
+  }
   ngOnInit(): void {
-    this.currentId = Number(this._activatedRoute.snapshot.paramMap.get('id'));
-  this.product=  this.__StaticProductsService.getProductById(this.currentId);
+    this._activatedRoute.paramMap.subscribe((paramMap) => {
+      this.currentId = Number(paramMap.get('id'));
+      this.product = this.__StaticProductsService.getProductById(
+        this.currentId
+      );
+    });
+    // this.currentId = Number(this._activatedRoute.snapshot.paramMap.get('id'));
+    // this.product = this.__StaticProductsService.getProductById(this.currentId);
+  }
+
+  goBack() {
+    this._locaton.back();
+  }
+
+  next() {
+     this.currendIdIndex = this.idsArr.findIndex((id) => id == this.currentId);
+    if (this.currendIdIndex  != this.idsArr.length - 1) {
+      this.router.navigateByUrl(`/details/${this.idsArr[this.currendIdIndex  + 1]}`);
+    }
+  }
+  prev() {
+     this.currendIdIndex  = this.idsArr.findIndex((id) => id == this.currentId);
+    if (this.currendIdIndex  != 0) {
+      this.router.navigateByUrl(`/details/${this.idsArr[this.currendIdIndex  - 1]}`);
+    }
   }
 }

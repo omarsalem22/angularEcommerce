@@ -69,12 +69,13 @@ export class StaticProductsService {
   }
 
   getProductsByCatId(catId: number): Iproduct[] {
-    if (catId==0){
-      return[...this.products ] 
-    }
-    else{
-
+    if (catId == 0) {
+      return [...this.products];
+    } else {
       return this.products.filter((prd) => prd.catId == catId);
     }
+  }
+  mapProductsToIds(): number[] {
+    return this.products.map((prd) => prd.id);
   }
 }

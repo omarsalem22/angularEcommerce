@@ -16,7 +16,10 @@ export const routes: Routes = [
   {
     path: 'about',
     component: AboutUsComponent,
+
     children: [
+
+      { path: '',pathMatch:"full", redirectTo:"about/vision" },
       { path: 'vision', component: VisionComponent },
       { path: 'values', component: ValuesComponent },
     ],

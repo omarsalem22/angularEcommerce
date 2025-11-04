@@ -18,6 +18,7 @@ import { FormsModule } from '@angular/forms';
 import { CartHighlightDirective } from '../../directives/cart-highlight.directive';
 import { StaticProductsService } from '../../services/static-products.service';
 import {  Router, RouterLink } from '@angular/router';
+import { OrderComponent } from "../order/order.component";
 
 @Component({
   selector: 'app-products',
@@ -28,7 +29,8 @@ import {  Router, RouterLink } from '@angular/router';
     CurrencyPipe,
     TitleCasePipe,
     CartHighlightDirective,
-  ],
+    OrderComponent
+],
   templateUrl: './products.component.html',
   styleUrl: './products.component.css',
 })
