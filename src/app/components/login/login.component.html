@@ -1,0 +1,3 @@
+<button class="btn btn-primary" (click)="login()"[disabled]="isUserlogged" >Login</button>
+
+<button class="btn btn-danger" (click)="logout()" [disabled]="!isUserlogged">Logout</button>

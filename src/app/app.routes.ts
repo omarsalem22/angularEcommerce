@@ -6,20 +6,23 @@ import { NotFoundComponent } from './components/not-found/not-found.component';
 import { VisionComponent } from './components/vision/vision.component';
 import { ValuesComponent } from './values/values.component';
 import { DetailsComponent } from './components/details/details.component';
+import { LoginComponent } from './components/login/login.component';
+import { authGuard } from './guards/auth.guard';
 
 export const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'Home' },
   { path: 'Home', component: HomeComponent },
-  { path: 'products', component: ProductsComponent },
+
+  { path: 'products', component: ProductsComponent ,canActivate:[authGuard] },
   { path: 'details/:id', component: DetailsComponent },
+  { path: 'login', component: LoginComponent },
 
   {
     path: 'about',
     component: AboutUsComponent,
 
     children: [
-
-      { path: '',pathMatch:"full", redirectTo:"about/vision" },
+      { path: '', pathMatch: 'full', redirectTo: 'about/vision' },
       { path: 'vision', component: VisionComponent },
       { path: 'values', component: ValuesComponent },
     ],

@@ -1,0 +1,49 @@
+{
+    "products": [
+      {
+        "id": "1",
+        "name": "laptop",
+        "price": 5000000,
+        "quantity": 3,
+        "catId": 1,
+        "imgUrl": "https://picsum.photos/200"
+      },
+      {
+        "id": "2",
+        "name": "mobile1",
+        "price": 6300,
+        "quantity": 5,
+        "catId": "2",
+        "imgUrl": "https://picsum.photos/200"
+      },
+      {
+        "id": "3",
+        "name": "mobile2",
+        "price": 6300,
+        "quantity": 0,
+        "catId": "2",
+        "imgUrl": "https://picsum.photos/200"
+      },
+      {
+        "id": "4",
+        "name": "tablet",
+        "price": 6300,
+        "quantity": 5,
+        "catId": "3",
+        "imgUrl": "https://picsum.photos/200"
+      },
+      {
+        "id": "5",
+        "name": "tablet2",
+        "price": 630,
+        "quantity": 1,
+        "catId": "3",
+        "imgUrl": "https://picsum.photos/200"
+      }
+    ],
+    "categories": [
+      { "id": "1", "name": "Laptops" },
+      { "id": "2", "name": "Mobiles" },
+      { "id": "3", "name": "Tablets" }
+    ]
+  }

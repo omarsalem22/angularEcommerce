@@ -1,9 +1,28 @@
 import { Injectable } from '@angular/core';
+import { BehaviorSubject } from 'rxjs';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UserAuthService {
+  private authSubject: BehaviorSubject<boolean>;
+  constructor() {
+    this.authSubject = new BehaviorSubject<boolean>(false);
+  }
 
-  constructor() { }
+  login() {
+    localStorage.setItem('token', 'dasd3a7j98kw1hkl54dajk54l');
+    this.authSubject.next(true);
+  }
+  logout() {
+    localStorage.removeItem('token');
+    this.authSubject.next(false);
+  }
+  getUserLogged(): boolean {
+    return localStorage.getItem('token') ? true : false;
+  }
+
+  getauthSubject(): BehaviorSubject<boolean> {
+    return this.authSubject;  
+  }
 }
